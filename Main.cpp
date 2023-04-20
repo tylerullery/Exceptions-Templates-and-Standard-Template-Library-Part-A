@@ -32,3 +32,18 @@ char character(char start, int offset) {
     // If no exceptions were thrown, return the target character
     return target;
 }
+
+int main() {
+    try {
+        cout << character('a', 1) << endl; // should return 'b'
+        cout << character('a', -1) << endl; // should throw an Invalid Range Exception
+        cout << character('Z', -1) << endl; // should return 'Y'
+        cout << character('?', 5) << endl; // should throw an Invalid Character Exception
+        cout << character('A', 32) << endl; // should throw an Invalid Range Exception
+    } catch (invalid_argument& e) {
+        cerr << "Error: " << e.what() << endl;
+    } catch (out_of_range& e) {
+        cerr << "Error: " << e.what() << endl;
+    }
+    return 0;
+}
